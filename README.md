@@ -54,7 +54,6 @@ Não deve usar:
 ## Prompt completo
 
 ```text
-```text
 Act as a Senior Front-end Architect, Senior UX/UI Designer, SaaS Product Designer for restaurants, restaurant operations consultant, inventory management specialist, purchasing workflow specialist, fiscal document designer, financial reporting specialist, JavaScript application architect and advanced HTML, CSS and Vanilla JavaScript developer.
 
 I need you to create a complete, advanced, realistic and visually polished single-page web prototype called:
