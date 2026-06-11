@@ -61,6 +61,48 @@
     button, input, select, textarea { font: inherit; }
     button { cursor: pointer; }
 
+    html {
+      scrollbar-width: auto;
+      scrollbar-color: color-mix(in srgb, var(--accent) 72%, #7a3f28) color-mix(in srgb, var(--card2) 88%, transparent);
+    }
+
+    * {
+      scrollbar-width: auto;
+      scrollbar-color: color-mix(in srgb, var(--accent) 72%, #7a3f28) color-mix(in srgb, var(--card2) 88%, transparent);
+    }
+
+    *::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--card2) 92%, white), color-mix(in srgb, var(--bg) 90%, black));
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 28%, transparent);
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 90%, white), color-mix(in srgb, var(--primary) 88%, black));
+      border-radius: 999px;
+      border: 3px solid color-mix(in srgb, var(--card2) 92%, transparent);
+      min-height: 42px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 1px 4px rgba(0,0,0,.16);
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 100%, white), color-mix(in srgb, var(--primary) 94%, black));
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 85%, var(--accent)), color-mix(in srgb, var(--primary2) 96%, black));
+    }
+
+    *::-webkit-scrollbar-corner {
+      background: color-mix(in srgb, var(--card2) 90%, transparent);
+    }
+
     .app {
       min-height: 100vh;
       display: grid;
@@ -78,6 +120,20 @@
       flex-direction: column;
       gap: 16px;
       z-index: 30;
+      scrollbar-width: auto;
+      scrollbar-color: rgba(233, 161, 102, .82) rgba(255,255,255,.08);
+      scrollbar-gutter: stable;
+    }
+
+    aside::-webkit-scrollbar-track {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    aside::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #e39a64, #9a5537);
+      border: 3px solid rgba(49, 24, 18, .96);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
     }
 
     .brand {
@@ -580,6 +636,101 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       background: var(--card2);
+    }
+
+    .table-toolbar {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 94%, var(--card2));
+    }
+
+    .table-toolbar-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table-toolbar-main {
+      display: flex;
+      flex: 1 1 520px;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .table-toolbar .search-group {
+      display: grid;
+      gap: 6px;
+      min-width: 240px;
+      flex: 1 1 260px;
+    }
+
+    .table-toolbar .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .table-toolbar .toolbar-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .table-toolbar .toolbar-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      background: color-mix(in srgb, var(--accent-soft) 42%, transparent);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .table-filter-panel {
+      display: none;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+      background: color-mix(in srgb, var(--accent-soft) 30%, transparent);
+    }
+
+    .table-filter-panel.open { display: grid; }
+
+    .table-filter-panel .filter-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: end;
+      grid-column: 1 / -1;
+    }
+
+    .table-filter-panel .double-input {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .table-empty-row td {
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+      padding: 18px 12px;
     }
 
     table { width: 100%; min-width: 920px; border-collapse: collapse; }
@@ -1225,6 +1376,25 @@
       animation: drawerIn .22s ease both;
     }
 
+    .drawer,
+    .notification-panel,
+    .cart,
+    .table-wrap,
+    .recipe-sidepanel {
+      scrollbar-width: auto;
+      scrollbar-color: color-mix(in srgb, var(--accent) 68%, #6d3a26) color-mix(in srgb, var(--card2) 88%, transparent);
+      scrollbar-gutter: stable;
+    }
+
+    .drawer::-webkit-scrollbar,
+    .notification-panel::-webkit-scrollbar,
+    .cart::-webkit-scrollbar,
+    .table-wrap::-webkit-scrollbar,
+    .recipe-sidepanel::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
     @keyframes drawerIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
     .toast {
@@ -1604,8 +1774,92 @@
       margin-bottom: 12px;
     }
 
+    .table-actions-compact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-top: 0;
+    }
+
+    .table-actions-compact .btn {
+      padding: 8px 10px;
+      min-height: 36px;
+      border-radius: 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .status-cell {
+      display: grid;
+      gap: 6px;
+    }
+
+    .status-reason {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      max-width: 260px;
+    }
+
+    .status-reason strong {
+      color: var(--text);
+      font-size: 12px;
+      display: inline;
+      margin-right: 4px;
+    }
+
+    .table-note {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .manager-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent-soft) 42%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .module-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .drawer-highlight {
+      margin-bottom: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      background: color-mix(in srgb, var(--accent-soft) 46%, transparent);
+    }
+
+    .drawer-highlight strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .drawer-highlight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
     @media (max-width: 860px) {
-      .feature-grid, .checkbox-grid { grid-template-columns: 1fr; }
+      .feature-grid, .checkbox-grid, .module-summary-grid { grid-template-columns: 1fr; }
+      .table-actions-compact { flex-direction: column; align-items: stretch; }
+      .table-actions-compact .btn { width: 100%; }
     }
 
     .module-hero {
@@ -1796,7 +2050,7 @@
     /* ===== Upgrade visual da Ficha Técnica ===== */
     .recipe-page-shell {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(360px, .78fr);
+      grid-template-columns: minmax(0, 1.3fr) minmax(390px, .82fr);
       gap: 18px;
       align-items: start;
       margin-top: 14px;
@@ -2244,20 +2498,24 @@
     }
 
     .recipe-tabbar {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 6px;
+      padding-bottom: 8px;
     }
 
     .recipe-tabbar button {
       border: 0;
       background: transparent;
       color: var(--muted);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-weight: 700;
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 1.2;
+      flex: 1 1 120px;
+      min-height: 46px;
       cursor: pointer;
       transition: .18s;
     }
@@ -2265,6 +2523,7 @@
     .recipe-tabbar button.active {
       color: var(--accent);
       background: color-mix(in srgb, var(--accent-soft) 78%, transparent);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, var(--border));
     }
 
     .recipe-tab-content {
@@ -2979,7 +3238,432 @@
       .invoice-cell { border-right: 0; }
     }
 
-  </style>
+  
+
+    /* ===== Correção visual do PDV / Vendas ===== */
+    #vendas {
+      display: none;
+    }
+
+    #vendas.active {
+      display: block;
+    }
+
+    .sales-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 16px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 22%, transparent), transparent 28rem),
+        linear-gradient(135deg, color-mix(in srgb, var(--card) 94%, transparent), color-mix(in srgb, var(--card2) 98%, transparent));
+      border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+    }
+
+    .sales-hero h3 {
+      margin: 12px 0 7px;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    .sales-hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 780px;
+    }
+
+    .sales-hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(130px, 1fr));
+      gap: 10px;
+      min-width: min(520px, 100%);
+    }
+
+    .sales-hero-metrics div {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card2) 88%, transparent);
+      padding: 13px 14px;
+    }
+
+    .sales-hero-metrics span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .sales-hero-metrics strong {
+      display: block;
+      font-size: 21px;
+      letter-spacing: -.8px;
+    }
+
+    .sales-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 470px);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .sales-card,
+    .sales-cart-card,
+    .sales-history-card {
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 22rem),
+        var(--card);
+    }
+
+    .sales-products-card {
+      min-width: 0;
+    }
+
+    .sales-section-head,
+    .sales-cart-head {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sales-products-card .form-grid.two {
+      grid-template-columns: minmax(250px, 1fr) minmax(220px, 340px);
+      margin-bottom: 14px;
+    }
+
+    .sales-dish-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .sales-dish-card {
+      padding: 15px;
+      border-radius: 22px;
+      min-height: 248px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--card2) 97%, transparent), color-mix(in srgb, var(--card) 96%, transparent));
+      border-color: color-mix(in srgb, var(--border) 86%, transparent);
+    }
+
+    .sales-dish-card.promo {
+      border-color: color-mix(in srgb, var(--red) 32%, var(--border));
+      background:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--red) 11%, transparent), transparent 13rem),
+        linear-gradient(180deg, color-mix(in srgb, var(--card2) 97%, transparent), color-mix(in srgb, var(--card) 96%, transparent));
+    }
+
+    .sales-dish-top {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .sales-dish-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--card2)), color-mix(in srgb, var(--primary) 10%, var(--card2)));
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+      font-size: 27px;
+    }
+
+    .sales-dish-main {
+      min-width: 0;
+    }
+
+    .sales-dish-title-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .sales-dish-title-row h4 {
+      font-size: 16px;
+      line-height: 1.15;
+      letter-spacing: -.25px;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .sales-dish-main p {
+      margin: 7px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sales-price-stack {
+      justify-content: flex-end;
+      text-align: right;
+      min-width: 78px;
+    }
+
+    .sales-dish-card .promo-price {
+      font-size: 21px;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    .sales-dish-card .price {
+      font-size: 20px;
+      white-space: nowrap;
+      color: var(--accent);
+    }
+
+    .sales-promo-line,
+    .sales-stock-line {
+      border-radius: 16px;
+      padding: 10px 11px;
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      line-height: 1.3;
+      margin-top: auto;
+    }
+
+    .sales-promo-line {
+      background: color-mix(in srgb, var(--red) 10%, var(--card2));
+      border: 1px solid color-mix(in srgb, var(--red) 28%, var(--border));
+      color: var(--red);
+    }
+
+    .sales-stock-line {
+      background: color-mix(in srgb, var(--green) 8%, var(--card2));
+      border: 1px solid color-mix(in srgb, var(--green) 22%, var(--border));
+      color: var(--green);
+    }
+
+    .sales-promo-line span,
+    .sales-stock-line span {
+      font-weight: 950;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    .sales-promo-line strong,
+    .sales-stock-line strong {
+      color: inherit;
+      font-size: 12px;
+    }
+
+    .sales-card-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .sales-card-actions .btn.primary {
+      flex: 1 1 150px;
+      justify-content: center;
+    }
+
+    .sales-card-actions .btn:not(.primary) {
+      flex: 0 0 auto;
+    }
+
+    .sales-cart-card {
+      position: sticky;
+      top: 92px;
+      max-height: calc(100vh - 116px);
+      overflow: auto;
+    }
+
+    .sales-cart-list {
+      max-height: 36vh;
+      padding-right: 2px;
+    }
+
+    .sales-cart-row {
+      grid-template-columns: minmax(0, 1fr) 78px 88px 38px;
+      padding: 12px;
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card2) 96%, transparent);
+    }
+
+    .cart-item-info {
+      min-width: 0;
+    }
+
+    .cart-item-info strong {
+      display: block;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .cart-item-info small {
+      display: block;
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .cart-qty-label {
+      margin: 0;
+      display: grid;
+      gap: 4px;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .cart-qty-label input {
+      height: 38px;
+      padding: 7px 8px;
+      text-align: center;
+    }
+
+    .cart-line-total {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .cart-remove {
+      background: color-mix(in srgb, var(--red) 8%, var(--card2));
+      border-color: color-mix(in srgb, var(--red) 24%, var(--border));
+      color: var(--red);
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .sales-checkout {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sales-checkout .mini-list .mini-item {
+      border-radius: 16px;
+      padding: 13px 14px;
+    }
+
+    .sales-checkout .mini-list .mini-item:last-child {
+      background: color-mix(in srgb, var(--green) 8%, var(--card2));
+      border-color: color-mix(in srgb, var(--green) 22%, var(--border));
+    }
+
+    .sales-checkout .actions {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 9px;
+    }
+
+    .sales-checkout .actions .btn {
+      justify-content: center;
+      min-height: 46px;
+    }
+
+    .sales-history-card {
+      margin-top: 16px;
+    }
+
+    .sales-empty {
+      min-height: 126px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1250px) {
+      .sales-hero {
+        grid-template-columns: 1fr;
+      }
+      .sales-shell {
+        grid-template-columns: 1fr;
+      }
+      .sales-cart-card {
+        position: static;
+        max-height: none;
+      }
+      .sales-cart-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .sales-dish-grid {
+        grid-template-columns: 1fr;
+      }
+      .sales-hero-metrics {
+        grid-template-columns: 1fr 1fr 1fr;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .sales-hero {
+        padding: 15px;
+      }
+      .sales-hero h3 {
+        font-size: 22px;
+      }
+      .sales-hero-metrics {
+        grid-template-columns: 1fr;
+      }
+      .sales-products-card .form-grid.two {
+        grid-template-columns: 1fr;
+      }
+      .sales-dish-title-row {
+        grid-template-columns: 1fr;
+      }
+      .sales-price-stack {
+        justify-content: flex-start;
+        text-align: left;
+      }
+      .sales-cart-row {
+        grid-template-columns: 1fr 72px 1fr 38px;
+      }
+      .cart-line-total {
+        text-align: left;
+      }
+      .sales-checkout .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .sales-cart-row {
+        grid-template-columns: 1fr;
+      }
+      .cart-remove {
+        width: 100%;
+      }
+    }
+
+  
+    @media (max-width: 860px) {
+      .table-toolbar-top, .table-toolbar-main, .table-toolbar .toolbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .table-toolbar .search-group { min-width: 0; }
+      .table-filter-panel { grid-template-columns: 1fr; }
+    }
+
+</style>
 
 <style>
 /* ===== RestoStock V7: lotes, conferência e relatórios profissionais ===== */
@@ -3198,13 +3882,27 @@
       </section>
 
       <section class="screen" id="vendas">
-        <div class="layout-2">
-          <div class="card">
-            <div class="section-head">
+        <div class="sales-hero card">
+          <div>
+            <span class="hero-badge">PDV inteligente</span>
+            <h3>Venda rápida com baixa automática</h3>
+            <p>Escolha os pratos, confira promoções por validade, finalize o pagamento e atualize o estoque sem sair da tela.</p>
+          </div>
+          <div class="sales-hero-metrics">
+            <div><span>Itens no carrinho</span><strong id="salesHeroItems">0</strong></div>
+            <div><span>Total parcial</span><strong id="salesHeroTotal">R$ 0,00</strong></div>
+            <div><span>Lucro estimado</span><strong id="salesHeroProfit">R$ 0,00</strong></div>
+          </div>
+        </div>
+
+        <div class="sales-shell">
+          <div class="card sales-card sales-products-card">
+            <div class="section-head sales-section-head">
               <div>
-                <h3>PDV / Venda rápida</h3>
-                <small>Venda baixa ingredientes automaticamente pela ficha técnica</small>
+                <h3>Cardápio do PDV</h3>
+                <small>Pratos disponíveis para venda no caixa</small>
               </div>
+              <span class="status info">Baixa FEFO</span>
             </div>
 
             <div class="form-grid two">
@@ -3225,17 +3923,20 @@
               </div>
             </div>
 
-            <div class="menu-cards" id="dishCards" style="margin-top:14px;"></div>
+            <div class="sales-dish-grid" id="dishCards"></div>
           </div>
 
-          <div class="card">
-            <div class="section-head">
-              <h3>Carrinho</h3>
-              <small id="cartCount">0 itens</small>
+          <div class="card sales-cart-card">
+            <div class="section-head sales-cart-head">
+              <div>
+                <h3>Carrinho</h3>
+                <small>Resumo da venda atual</small>
+              </div>
+              <span class="status info" id="cartCount">0 itens</span>
             </div>
-            <div class="cart" id="cartList"></div>
+            <div class="cart sales-cart-list" id="cartList"></div>
 
-            <div style="margin-top:14px;">
+            <div class="sales-checkout">
               <div class="form-grid two">
                 <div>
                   <label>Atendente</label>
@@ -3266,7 +3967,7 @@
           </div>
         </div>
 
-        <div class="card" style="margin-top:14px;">
+        <div class="card sales-history-card">
           <div class="section-head">
             <h3>Histórico de vendas</h3>
             <div class="actions" style="margin-top:0;">
@@ -3642,11 +4343,11 @@
         description: "Gerencia operação, estoque, vendas, faturamento e relatórios. Não altera permissões administrativas."
       },
       "Atendente / Caixa": {
-        screens: ["dashboard", "vendas", "relatorios"],
-        functions: ["nova-venda", "mesas", "delivery", "fechamento", "rel-vendas", "relatorios"],
+        screens: ["dashboard", "vendas"],
+        functions: ["nova-venda", "mesas", "delivery", "fechamento", "rel-vendas"],
         reports: ["vendas"],
         stockMoves: [],
-        description: "Acessa vendas, comandas, delivery, fechamento de caixa e relatório de vendas."
+        description: "Acessa vendas, comandas, delivery, fechamento de caixa e somente o relatório resumido de vendas."
       },
       "Cozinheiro": {
         screens: ["dashboard", "estoque", "ficha"],
@@ -4565,6 +5266,7 @@
       document.getElementById("sidebar").classList.remove("open");
       renderMainNav();
       applyPermissions();
+      initTableEnhancers(document.getElementById("moduleContent"));
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -4600,7 +5302,7 @@
         { id:"F101", name:"Panificadora Sol", category:"Panificação", email:"pedidos@panificadorasol.com.br", phone:"(41) 3333-1100", leadTime:1, status:"Ativo" },
         { id:"F102", name:"Carnes Boa Mesa", category:"Carnes", email:"comercial@boamesa.com.br", phone:"(41) 3333-2200", leadTime:2, status:"Ativo" },
         { id:"F103", name:"Laticínios Serra", category:"Laticínios", email:"atendimento@laticiniosserra.com.br", phone:"(41) 3333-3300", leadTime:2, status:"Ativo" },
-        { id:"F104", name:"Horti Verde", category:"Hortifruti", email:"pedidos@hortiverde.com.br", phone:"(41) 3333-4400", leadTime:1, status:"Atenção" },
+        { id:"F104", name:"Horti Verde", category:"Hortifruti", email:"pedidos@hortiverde.com.br", phone:"(41) 3333-4400", leadTime:1, status:"Atenção", statusReason:"Oscilação recente de qualidade no tomate e no alface, mantendo acompanhamento até a próxima compra." },
         { id:"F105", name:"Frios Paraná", category:"Congelados", email:"sac@friosparana.com.br", phone:"(41) 3333-5500", leadTime:4, status:"Ativo" },
         { id:"F106", name:"Distribuidora Ponto", category:"Mercearia", email:"vendas@distribuidoraponto.com.br", phone:"(41) 3333-6600", leadTime:3, status:"Ativo" },
         { id:"F107", name:"Bebidas Tropical", category:"Bebidas", email:"pedidos@bebidastropical.com.br", phone:"(41) 3333-8800", leadTime:2, status:"Ativo" },
@@ -4772,6 +5474,7 @@
       renderCentral();
       applyPermissions();
       updateNotificationBadge();
+      initTableEnhancers(document);
       save();
     }
 
@@ -5211,20 +5914,32 @@
     function renderDishes() {
       const q = (document.getElementById("dishSearch")?.value || "").toLowerCase();
       const recipes = state.data.recipes.filter(r => (r.name + " " + r.category).toLowerCase().includes(q));
-      document.getElementById("dishCards").innerHTML = recipes.map(r => {
+      const dishCards = document.getElementById("dishCards");
+      if (!dishCards) return;
+      dishCards.innerHTML = recipes.map(r => {
         const cost = recipeCost(r);
         const price = getRecipeSalePrice(r);
         const promo = recipePromotionInfo(r);
         const margin = price ? ((price-cost)/price)*100 : 0;
-        return `<div class="dish-card ${promo.active ? "promo" : ""}">
-          <div class="dish-head">
-            <div><h4>${safeText(r.name)}</h4><p>${safeText(r.category)} • ${r.minutes} min • margem ${number(margin,1)}%</p>${promo.active ? `<span class="promotion-badge">🔥 Promoção automática</span>` : ""}</div>
-            <div class="price-stack">${promo.active ? `<span class="old-price">${money(r.price)}</span><span class="promo-price">${money(price)}</span>` : `<span class="price">${money(price)}</span>`}</div>
+        const marginClass = margin >= 60 ? "normal" : margin >= 35 ? "warn" : "danger";
+        return `<article class="dish-card sales-dish-card ${promo.active ? "promo" : ""}">
+          <div class="sales-dish-top">
+            <div class="sales-dish-icon">${recipeIcon(r)}</div>
+            <div class="sales-dish-main">
+              <div class="sales-dish-title-row">
+                <h4>${safeText(r.name)}</h4>
+                <div class="price-stack sales-price-stack">${promo.active ? `<span class="old-price">${money(r.price)}</span><span class="promo-price">${money(price)}</span>` : `<span class="price">${money(price)}</span>`}</div>
+              </div>
+              <p>${safeText(r.category)} • ${r.minutes} min • <span class="status ${marginClass}">margem ${number(margin,1)}%</span></p>
+            </div>
           </div>
-          ${promo.active ? `<div class="promo-note">${safeText(promo.reason)}</div>` : ""}
-          <div class="actions"><button class="btn primary" onclick="addToCart('${r.id}')">Adicionar</button><button class="btn" onclick="selectRecipe('${r.id}')">Ficha</button></div>
-        </div>`;
-      }).join("") || `<div class="empty">Nenhum prato encontrado.</div>`;
+          ${promo.active ? `<div class="sales-promo-line"><span>🔥 Promoção automática</span><strong>${safeText(promo.reason).replace("Promoção automática:", "")}</strong></div>` : `<div class="sales-stock-line"><span>Disponível</span><strong>Preço normal • estoque integrado</strong></div>`}
+          <div class="sales-card-actions">
+            <button class="btn primary" onclick="addToCart('${r.id}')">Adicionar</button>
+            <button class="btn" onclick="selectRecipe('${r.id}')">Ficha</button>
+          </div>
+        </article>`;
+      }).join("") || `<div class="empty sales-empty">Nenhum prato encontrado para essa busca.</div>`;
     }
 
     function addToCart(id) {
@@ -5243,21 +5958,33 @@
       const cart = document.getElementById("cartList");
       if (!cart) return;
       const totalItems = state.cart.reduce((s,c)=>s+c.qty,0);
-      document.getElementById("cartCount").textContent = `${totalItems} itens`;
-      cart.innerHTML = state.cart.map((c,i) => `
-        <div class="cart-row">
-          <div><strong>${safeText(c.name)}</strong><br><small style="color:var(--muted)">${money(c.price)} cada${c.promotion ? " • promoção" : ""}</small></div>
-          <input type="number" min="1" value="${c.qty}" onchange="setCartQty(${i}, this.value)">
-          <strong>${money(c.price*c.qty)}</strong>
-          <button class="icon-btn" onclick="removeCart(${i})">×</button>
-        </div>
-      `).join("") || `<div class="empty">O carrinho está vazio.</div>`;
-
       const subtotal = state.cart.reduce((s,c)=>s+c.price*c.qty,0);
       const cost = state.cart.reduce((s,c)=>s+c.cost*c.qty,0);
+      const profit = Math.max(0, subtotal-cost);
+      const cartCount = document.getElementById("cartCount");
+      if (cartCount) cartCount.textContent = `${totalItems} itens`;
+      const heroItems = document.getElementById("salesHeroItems");
+      const heroTotal = document.getElementById("salesHeroTotal");
+      const heroProfit = document.getElementById("salesHeroProfit");
+      if (heroItems) heroItems.textContent = totalItems;
+      if (heroTotal) heroTotal.textContent = money(subtotal);
+      if (heroProfit) heroProfit.textContent = money(profit);
+
+      cart.innerHTML = state.cart.map((c,i) => `
+        <div class="cart-row sales-cart-row">
+          <div class="cart-item-info">
+            <strong>${safeText(c.name)}</strong>
+            <small>${money(c.price)} cada${c.promotion ? " • promoção automática" : ""}</small>
+          </div>
+          <label class="cart-qty-label"><span>Qtd.</span><input type="number" min="1" value="${c.qty}" onchange="setCartQty(${i}, this.value)"></label>
+          <strong class="cart-line-total">${money(c.price*c.qty)}</strong>
+          <button class="icon-btn cart-remove" aria-label="Remover ${safeText(c.name)}" onclick="removeCart(${i})">×</button>
+        </div>
+      `).join("") || `<div class="empty sales-empty"><strong>Carrinho vazio</strong><br>Adicione pratos do cardápio para iniciar a venda.</div>`;
+
       document.getElementById("subtotalValue").textContent = money(subtotal);
       document.getElementById("totalValue").textContent = money(subtotal);
-      document.getElementById("profitValue").textContent = money(Math.max(0, subtotal-cost));
+      document.getElementById("profitValue").textContent = money(profit);
     }
 
     function setCartQty(i, value) {
@@ -5715,7 +6442,7 @@
 
           <div class="recipe-tabbar">
             <button class="${currentTab === "ingredients" ? "active" : ""}" onclick="setRecipeDetailTab('ingredients')">Ingredientes</button>
-            <button class="${currentTab === "prep" ? "active" : ""}" onclick="setRecipeDetailTab('prep')">Modo de preparo</button>
+            <button class="${currentTab === "prep" ? "active" : ""}" onclick="setRecipeDetailTab('prep')">Preparo</button>
             <button class="${currentTab === "info" ? "active" : ""}" onclick="setRecipeDetailTab('info')">Informações</button>
           </div>
 
@@ -5908,10 +6635,226 @@
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w.-]+/g,"_").toLowerCase();
     }
 
+
+    function normalizeFilterText(value) {
+      return String(value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+    function parseFilterNumber(value) {
+      const raw = String(value ?? "").trim();
+      if (!raw) return NaN;
+      const cleaned = raw
+        .replace(/R\$/gi, "")
+        .replace(/[^0-9,.-]/g, "")
+        .replace(/\.(?=\d{3}(\D|$))/g, "")
+        .replace(/,/g, ".");
+      const numberValue = Number(cleaned);
+      return Number.isFinite(numberValue) ? numberValue : NaN;
+    }
+
+    function tableToolbarMarkup(tableId, headers = []) {
+      const options = [`<option value="__all">Todos os campos</option>`]
+        .concat(headers.map((header, index) => `<option value="${index}">${safeText(header)}</option>`))
+        .join("");
+
+      return `
+        <div class="table-toolbar" data-table-toolbar="${tableId}">
+          <div class="table-toolbar-top">
+            <div class="table-toolbar-main">
+              <div class="search-group">
+                <label for="${tableId}_search">Procurar</label>
+                <input id="${tableId}_search" type="search" placeholder="Buscar pedidos, localidades, preços, fornecedores, clientes..." onkeydown="if(event.key==='Enter'){event.preventDefault(); applyTableFilters('${tableId}');}">
+              </div>
+              <div class="toolbar-actions">
+                <button class="btn primary" type="button" onclick="applyTableFilters('${tableId}')">Procurar</button>
+                <button class="btn" type="button" onclick="toggleTableFilterPanel('${tableId}')">Filtro</button>
+                <button class="btn" type="button" onclick="clearTableFilters('${tableId}')">Limpar</button>
+              </div>
+            </div>
+            <div class="toolbar-meta">
+              <span class="toolbar-chip">Tabela inteligente</span>
+              <span id="${tableId}_count">0 resultados</span>
+            </div>
+          </div>
+          <div class="table-filter-panel" id="${tableId}_panel">
+            <div>
+              <label for="${tableId}_column">Campo</label>
+              <select id="${tableId}_column">${options}</select>
+            </div>
+            <div>
+              <label for="${tableId}_mode">Filtro</label>
+              <select id="${tableId}_mode" onchange="updateTableFilterMode('${tableId}')">
+                <option value="contains">Contém</option>
+                <option value="equals">É igual a</option>
+                <option value="starts">Começa com</option>
+                <option value="gt">Maior que</option>
+                <option value="lt">Menor que</option>
+                <option value="between">Entre valores</option>
+              </select>
+            </div>
+            <div>
+              <label for="${tableId}_value1">Valor principal</label>
+              <input id="${tableId}_value1" type="text" placeholder="Ex.: Curitiba, 100, PIX, Mesa 01">
+            </div>
+            <div id="${tableId}_value2Wrap" style="display:none;">
+              <label for="${tableId}_value2">Valor final</label>
+              <input id="${tableId}_value2" type="text" placeholder="Ex.: 500">
+            </div>
+            <div class="filter-actions">
+              <button class="btn primary" type="button" onclick="applyTableFilters('${tableId}')">Aplicar filtro</button>
+              <button class="btn" type="button" onclick="clearTableFilters('${tableId}')">Limpar filtros</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function ensureTableToolbar(table, headers = []) {
+      if (!table) return;
+      if (!table.id) table.id = `tbl_${uid().toLowerCase()}`;
+      const wrap = table.closest(".table-wrap");
+      if (!wrap) return;
+
+      let toolbar = wrap.querySelector(".table-toolbar");
+      if (!toolbar) {
+        wrap.insertAdjacentHTML("afterbegin", tableToolbarMarkup(table.id, headers));
+      } else if (toolbar.dataset.tableToolbar !== table.id) {
+        toolbar.outerHTML = tableToolbarMarkup(table.id, headers);
+      } else {
+        const columnSelect = document.getElementById(`${table.id}_column`);
+        if (columnSelect) {
+          columnSelect.innerHTML = [`<option value="__all">Todos os campos</option>`]
+            .concat(headers.map((header, index) => `<option value="${index}">${safeText(header)}</option>`))
+            .join("");
+        }
+      }
+      updateTableFilterMode(table.id);
+      updateTableCounter(table.id);
+    }
+
+    function getTableRows(table) {
+      return Array.from(table?.querySelectorAll("tbody tr") || []).filter(row => !row.classList.contains("table-empty-row"));
+    }
+
+    function updateTableCounter(tableId) {
+      const table = document.getElementById(tableId);
+      const counter = document.getElementById(`${tableId}_count`);
+      if (!table || !counter) return;
+      const rows = getTableRows(table);
+      const visible = rows.filter(row => row.style.display !== "none").length;
+      counter.textContent = `${visible} resultado${visible === 1 ? "" : "s"}`;
+    }
+
+    function updateTableFilterMode(tableId) {
+      const mode = document.getElementById(`${tableId}_mode`)?.value || "contains";
+      const second = document.getElementById(`${tableId}_value2Wrap`);
+      if (second) second.style.display = mode === "between" ? "" : "none";
+    }
+
+    function toggleTableFilterPanel(tableId) {
+      const panel = document.getElementById(`${tableId}_panel`);
+      if (!panel) return;
+      panel.classList.toggle("open");
+    }
+
+    function clearTableFilters(tableId) {
+      const search = document.getElementById(`${tableId}_search`);
+      const column = document.getElementById(`${tableId}_column`);
+      const mode = document.getElementById(`${tableId}_mode`);
+      const value1 = document.getElementById(`${tableId}_value1`);
+      const value2 = document.getElementById(`${tableId}_value2`);
+      if (search) search.value = "";
+      if (column) column.value = "__all";
+      if (mode) mode.value = "contains";
+      if (value1) value1.value = "";
+      if (value2) value2.value = "";
+      updateTableFilterMode(tableId);
+      applyTableFilters(tableId);
+    }
+
+    function rowMatchesAdvancedFilter(cells, columnIndex, mode, value1, value2) {
+      if (!value1 && mode !== "between") return true;
+      const scopeCells = columnIndex === "__all" ? cells : [cells[Number(columnIndex)] || ""];
+      const joinedText = normalizeFilterText(scopeCells.join(" "));
+      const normalized1 = normalizeFilterText(value1);
+
+      if (mode === "contains") return !normalized1 || joinedText.includes(normalized1);
+      if (mode === "equals") return !normalized1 || joinedText === normalized1;
+      if (mode === "starts") return !normalized1 || joinedText.startsWith(normalized1);
+
+      const numericCandidates = scopeCells.map(parseFilterNumber).filter(value => Number.isFinite(value));
+      const currentNumber = numericCandidates.length ? numericCandidates[0] : parseFilterNumber(scopeCells[0]);
+      const compare1 = parseFilterNumber(value1);
+      const compare2 = parseFilterNumber(value2);
+
+      if (!Number.isFinite(currentNumber) || !Number.isFinite(compare1)) return false;
+      if (mode === "gt") return currentNumber > compare1;
+      if (mode === "lt") return currentNumber < compare1;
+      if (mode === "between") {
+        if (!Number.isFinite(compare2)) return false;
+        const min = Math.min(compare1, compare2);
+        const max = Math.max(compare1, compare2);
+        return currentNumber >= min && currentNumber <= max;
+      }
+      return true;
+    }
+
+    function applyTableFilters(tableId) {
+      const table = document.getElementById(tableId);
+      if (!table) return;
+      const rows = getTableRows(table);
+      const searchTerm = normalizeFilterText(document.getElementById(`${tableId}_search`)?.value || "");
+      const columnIndex = document.getElementById(`${tableId}_column`)?.value || "__all";
+      const mode = document.getElementById(`${tableId}_mode`)?.value || "contains";
+      const value1 = document.getElementById(`${tableId}_value1`)?.value || "";
+      const value2 = document.getElementById(`${tableId}_value2`)?.value || "";
+
+      rows.forEach(row => {
+        const cells = Array.from(row.cells).map(cell => cell.textContent.trim());
+        const haystack = normalizeFilterText(cells.join(" "));
+        const scopedSearch = columnIndex === "__all" ? haystack : normalizeFilterText(cells[Number(columnIndex)] || "");
+        const searchMatch = !searchTerm || scopedSearch.includes(searchTerm);
+        const filterMatch = rowMatchesAdvancedFilter(cells, columnIndex, mode, value1, value2);
+        row.style.display = searchMatch && filterMatch ? "" : "none";
+      });
+
+      const tbody = table.querySelector("tbody");
+      if (tbody) {
+        const emptyRow = tbody.querySelector(".table-empty-row");
+        const visibleCount = rows.filter(row => row.style.display !== "none").length;
+        if (!visibleCount && !emptyRow) {
+          const tr = document.createElement("tr");
+          tr.className = "table-empty-row";
+          const td = document.createElement("td");
+          td.colSpan = Math.max(1, table.querySelectorAll("thead th").length);
+          td.textContent = "Nenhum resultado encontrado com os filtros aplicados.";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+        } else if (visibleCount && emptyRow) {
+          emptyRow.remove();
+        }
+      }
+      updateTableCounter(tableId);
+    }
+
+    function initTableEnhancers(root = document) {
+      root.querySelectorAll(".table-wrap > table").forEach(table => {
+        if (table.classList.contains("table-mini") && !table.classList.contains("filterable-table")) return;
+        const headers = Array.from(table.querySelectorAll("thead th")).map(th => th.textContent.trim());
+        if (headers.length) ensureTableToolbar(table, headers);
+      });
+    }
+
     function setTable(id, headers, rows) {
       const table = document.getElementById(id);
       if (!table) return;
       table.innerHTML = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+      ensureTableToolbar(table, headers);
+      applyTableFilters(id);
     }
 
     function renderSelects() {
@@ -6083,7 +7026,11 @@
     }
 
     function simpleTable(headers, rows) {
-      return `<div class="table-wrap" style="margin-top:12px;"><table class="table-mini"><thead><tr>${headers.map(h => `<th>${safeText(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      return `<div class="table-wrap" style="margin-top:12px;"><table id="tbl_${uid().toLowerCase()}" class="table-mini"><thead><tr>${headers.map(h => `<th>${safeText(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    }
+
+    function filterableSimpleTable(headers, rows) {
+      return `<div class="table-wrap" style="margin-top:12px;"><table id="tbl_${uid().toLowerCase()}" class="table-mini filterable-table"><thead><tr>${headers.map(h => `<th>${safeText(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
     }
 
     function recipeOptions() {
@@ -6423,13 +7370,16 @@
         return [`Mesa ${String(table).padStart(2,"0")}`, `<span class="status ${status === "Livre" ? "normal" : status === "Reservada" ? "warn" : "info"}">${status}</span>`, openOrders.length || "-", value, btn];
       });
       const openCount = state.data.tableOrders.filter(o => o.status !== "Fechada").length;
+      const occupiedTables = new Set(state.data.tableOrders.filter(o => o.status !== "Fechada").map(o => o.table)).size;
+      const reservedTables = Array.from({ length: 20 }, (_, i) => i + 1).filter(table => !state.data.tableOrders.some(o => Number(o.table) === table && o.status !== "Fechada") && table % 7 === 0).length;
       openModulePage("Mesas e Comandas", "Controle real das mesas abertas no protótipo.", `
-        <div class="feature-grid">
+        <div class="module-summary-grid">
           <div class="feature-card"><h4>Comandas abertas</h4><p>${openCount}</p></div>
-          <div class="feature-card"><h4>Mesas ocupadas</h4><p>${new Set(state.data.tableOrders.filter(o => o.status !== "Fechada").map(o => o.table)).size}/20</p></div>
-          <div class="feature-card"><h4>Status</h4><p>Dados salvos no localStorage</p></div>
+          <div class="feature-card"><h4>Mesas ocupadas</h4><p>${occupiedTables}/20</p></div>
+          <div class="feature-card"><h4>Mesas reservadas</h4><p>${reservedTables}</p></div>
+          <div class="feature-card"><h4>Mesas livres</h4><p>${20 - occupiedTables - reservedTables}</p></div>
         </div>
-        <div class="action-strip"><button class="btn primary" onclick="openTableOrder(1)">Nova comanda</button><button class="btn" onclick="openCashClosingFeature()">Fechamento do caixa</button></div>
+        <div class="action-strip"><button class="btn primary" onclick="openTableOrder(1)">Nova comanda</button><button class="btn" onclick="openCashClosingFeature()">Fechamento do caixa</button><button class="btn" onclick="openFeature('Delivery')">Ir para delivery</button></div>
         ${simpleTable(["Mesa", "Status", "Itens abertos", "Valor parcial", "Ação"], rows)}
       `);
     }
@@ -6437,6 +7387,7 @@
     function openTableOrder(tableNumber) {
       if (!canUseFunction("mesas")) return permissionDenied("Mesas e Comandas");
       openDrawer(`Mesa ${String(tableNumber).padStart(2,"0")}`, "Adicionar item à comanda.", `
+        <div class="drawer-highlight"><strong>Lançamento rápido da comanda</strong><p>Use esta tela para incluir itens na mesa e só contabilizar no faturamento quando a comanda for fechada.</p></div>
         <form onsubmit="submitTableOrder(event, ${tableNumber})">
           <div class="form-grid two">
             <div><label>Prato</label><select id="tableRecipe">${recipeOptions()}</select></div>
@@ -6458,7 +7409,7 @@
         state.data.tableOrders.unshift({ id: "C" + uid(), table: tableNumber, saleId: sale.id, status: "Aberta", date: new Date().toISOString() });
         addLog("Comanda", `Mesa ${String(tableNumber).padStart(2,"0")} recebeu item da venda ${sale.id}`);
         renderAll();
-        toast("Item adicionado à comanda e estoque baixado.");
+        toast("Item adicionado à comanda. O faturamento será confirmado no fechamento da mesa.");
         openTablesFeature();
       }
     }
@@ -6905,7 +7856,9 @@
                 <div><label>Telefone fictício</label><input id="supplierPhone" value="(41) 99999-0000" required></div>
                 <div><label>Prazo médio de entrega</label><input id="supplierLeadTime" type="number" min="1" value="3" required></div>
                 <div><label>Status</label><select id="supplierStatus"><option>Ativo</option><option>Atenção</option><option>Inativo</option></select></div>
+                <div class="full"><label>Motivo do status</label><input id="supplierStatusReason" placeholder="Ex.: prazo acima do padrão, fornecedor em reavaliação, operação normal."></div>
               </div>
+              <div class="manager-note"><strong style="color:var(--text);display:block;margin-bottom:4px;">Status com explicação</strong> Sempre que um fornecedor estiver em <b>Atenção</b> ou <b>Inativo</b>, registre uma justificativa plausível para a equipe entender o motivo.</div>
               <div class="actions"><button class="btn primary" type="submit">Salvar fornecedor</button><button class="btn" type="button" onclick="clearSupplierForm()">Limpar</button><button class="btn" type="button" onclick="exportExcel('fornecedores')">Exportar Excel</button></div>
             </form>
           </div>
@@ -6924,12 +7877,31 @@
       renderSuppliersManager();
     }
 
+    function defaultSupplierReasonForStatus(status, supplier = {}) {
+      const lead = Number(supplier.leadTime || 0);
+      if (status === "Atenção") return supplier.statusReason || (lead > 3
+        ? `Prazo acima do padrão interno (${lead} dias).`
+        : supplier.product
+          ? `Monitoramento ativo do item ${supplier.product.toLowerCase()} por oscilação de prazo ou preço.`
+          : "Fornecedor exige acompanhamento de prazo e custo antes da próxima compra.");
+      if (status === "Inativo") return supplier.statusReason || "Fornecedor pausado para novas compras até reavaliação cadastral.";
+      return supplier.statusReason || "Fornecedor operando dentro do prazo e sem pendências relevantes.";
+    }
+
+    function supplierStatusMeta(supplier, purchases = 0) {
+      const status = supplier.status || "Ativo";
+      const reason = defaultSupplierReasonForStatus(status, supplier);
+      const cls = status === "Ativo" ? "normal" : status === "Atenção" ? "warn" : "danger";
+      const purchaseText = purchases ? `${purchases} compra(s) registrada(s)` : "Sem compra registrada ainda";
+      return { status, reason, cls, purchaseText };
+    }
+
     function renderSuppliersManager() {
       ensureCollections();
       const q = (document.getElementById("supplierSearch")?.value || "").toLowerCase();
 
       const suppliers = state.data.suppliers.filter(s => {
-        const text = `${s.name} ${s.category} ${s.email} ${s.phone} ${s.product || ""} ${s.status || ""}`.toLowerCase();
+        const text = `${s.name} ${s.category} ${s.email} ${s.phone} ${s.product || ""} ${s.status || ""} ${s.statusReason || ""}`.toLowerCase();
         return !q || text.includes(q);
       });
 
@@ -6944,24 +7916,24 @@
         summary.innerHTML = `
           <div class="summary-pill"><span>Total</span><strong>${state.data.suppliers.length}</strong></div>
           <div class="summary-pill"><span>Ativos</span><strong>${active}</strong></div>
-          <div class="summary-pill"><span>Atenção</span><strong>${attention}</strong></div>
+          <div class="summary-pill"><span>Em atenção</span><strong>${attention}</strong></div>
           <div class="summary-pill"><span>Prazo médio</span><strong>${number(avgLead,1)} dias</strong></div>
         `;
       }
 
       const rows = suppliers.map(s => {
         const purchases = (state.data.purchases || []).filter(p => p.supplier === s.name).length;
+        const meta = supplierStatusMeta(s, purchases);
+        const contact = `<strong>${safeText(s.email)}</strong><span class="table-note">${safeText(s.phone)}</span>`;
         return [
           safeText(s.id),
-          safeText(s.name),
+          `<strong>${safeText(s.name)}</strong><span class="table-note">${safeText(s.product || s.productMain || "Produto não informado")}</span>`,
           safeText(s.category),
-          safeText(s.product || s.productMain || "-"),
-          safeText(s.email),
-          safeText(s.phone),
+          contact,
           `${number(s.leadTime || 0,0)} dias`,
-          `<span class="status ${(s.status || "Ativo") === "Ativo" ? "normal" : (s.status || "Ativo") === "Atenção" ? "warn" : "danger"}">${safeText(s.status || "Ativo")}</span>`,
+          `<div class="status-cell"><span class="status ${meta.cls}">${safeText(meta.status)}</span><span class="status-reason"><strong>Motivo:</strong>${safeText(meta.reason)}</span></div>`,
           purchases,
-          `<div class="actions" style="margin-top:0;">
+          `<div class="table-actions-compact">
             <button class="btn" onclick="editSupplier('${s.id}')">Editar</button>
             <button class="btn" onclick="toggleSupplierStatus('${s.id}')">Status</button>
             <button class="btn" onclick="viewSupplierHistory('${s.id}')">Histórico</button>
@@ -6970,7 +7942,7 @@
         ];
       });
 
-      setTable("suppliersManagerTable", ["ID", "Fornecedor", "Categoria", "Produto", "E-mail", "Telefone", "Prazo", "Status", "Compras", "Ações"], rows);
+      setTable("suppliersManagerTable", ["ID", "Fornecedor", "Categoria", "Contato", "Prazo", "Status e motivo", "Compras", "Ações"], rows);
     }
 
     function clearSupplierForm() {
@@ -6983,6 +7955,7 @@
       document.getElementById("supplierPhone").value = "(41) 99999-0000";
       document.getElementById("supplierLeadTime").value = 3;
       document.getElementById("supplierStatus").value = "Ativo";
+      document.getElementById("supplierStatusReason").value = "Fornecedor operando dentro do prazo e sem pendências relevantes.";
     }
 
     function submitSupplierManager(event) {
@@ -6995,8 +7968,11 @@
         email: document.getElementById("supplierEmail").value.trim(),
         phone: document.getElementById("supplierPhone").value.trim(),
         leadTime: Number(document.getElementById("supplierLeadTime").value || 1),
-        status: document.getElementById("supplierStatus").value
+        status: document.getElementById("supplierStatus").value,
+        statusReason: document.getElementById("supplierStatusReason").value.trim()
       };
+
+      payload.statusReason = payload.statusReason || defaultSupplierReasonForStatus(payload.status, payload);
 
       if (!payload.name) return toast("Informe o nome do fornecedor.");
 
@@ -7030,6 +8006,7 @@
       document.getElementById("supplierPhone").value = supplier.phone || "";
       document.getElementById("supplierLeadTime").value = supplier.leadTime || 3;
       document.getElementById("supplierStatus").value = supplier.status || "Ativo";
+      document.getElementById("supplierStatusReason").value = supplier.statusReason || defaultSupplierReasonForStatus(supplier.status || "Ativo", supplier);
       document.getElementById("supplierName").focus();
     }
 
@@ -7039,6 +8016,7 @@
 
       const current = supplier.status || "Ativo";
       supplier.status = current === "Ativo" ? "Atenção" : current === "Atenção" ? "Inativo" : "Ativo";
+      supplier.statusReason = defaultSupplierReasonForStatus(supplier.status, supplier);
       addLog("Fornecedor", `Status de ${supplier.name} alterado para ${supplier.status}.`);
       renderAll();
       renderSuppliersManager();
@@ -7071,9 +8049,16 @@
         new Date(p.date).toLocaleString("pt-BR")
       ]);
 
-      openDrawer(`Histórico de ${supplier.name}`, "Compras registradas com este fornecedor.", rows.length
-        ? simpleTable(["ID", "Produto", "Quantidade", "Total", "Status", "Data"], rows)
-        : `<div class="empty">Nenhuma compra registrada para este fornecedor.</div>`);
+      const meta = supplierStatusMeta(supplier, purchases.length);
+      openDrawer(`Histórico de ${supplier.name}`, "Compras registradas com este fornecedor.", `
+        <div class="drawer-highlight">
+          <strong>Status atual: ${safeText(meta.status)}</strong>
+          <p>${safeText(meta.reason)} • ${safeText(meta.purchaseText)}</p>
+        </div>
+        ${rows.length
+          ? simpleTable(["ID", "Produto", "Quantidade", "Total", "Status", "Data"], rows)
+          : `<div class="empty">Nenhuma compra registrada para este fornecedor.</div>`}
+      `);
     }
 
     function openGoalsFeature() {
@@ -7662,6 +8647,7 @@
       document.getElementById("drawerSubtitle").textContent = subtitle;
       document.getElementById("drawerContent").innerHTML = html;
       document.getElementById("drawerOverlay").classList.add("open");
+      initTableEnhancers(document.getElementById("drawerContent"));
     }
 
     function closeDrawer() {
